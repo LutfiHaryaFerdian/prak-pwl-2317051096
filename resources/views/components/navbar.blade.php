@@ -20,6 +20,9 @@
                     <a href="/matakuliah" class="nav-link {{ request()->is('matakuliah*') ? 'active text-white fw-semibold' : 'text-light' }}">Mata Kuliah</a>
                 </li>
                 <li class="nav-item">
+                    <a href="/profile" class="nav-link {{ request()->is('profile') ? 'active text-white fw-semibold' : 'text-light' }}">Profile</a>
+                </li>
+                <li class="nav-item">
                     <a href="/logout" class="nav-link text-light">Logout</a>
                 </li>
             </ul>
