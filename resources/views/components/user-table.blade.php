@@ -1,23 +1,57 @@
-<div class="bg-white shadow-md rounded-lg overflow-hidden">
-        <table class="min-w-full border border-gray-300 text-sm">
-            <thead class="bg-blue-600 text-black">
+<div class="table-responsive">
+    <table class="table table-bordered table-hover text-center align-middle">
+        <thead class="text-white" style="background-color:#102a63;">
+            <tr>
+                <th>ID</th>
+                <th>Nama</th>
+                <th>NPM</th>
+                <th>Kelas</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($users as $user)
                 <tr>
-                    <th class="px-4 py-2 border">ID</th>
-                    <th class="px-4 py-2 border">Nama</th>
-                    <th class="px-4 py-2 border">NPM</th>
-                    <th class="px-4 py-2 border">Kelas</th>
-                </tr>
-            </thead>
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->nama }}</td>
+                    <td>{{ $user->nim }}</td>
+                    <td>{{ $user->nama_kelas }}</td>
+                    <td>
+                        <a href="{{ route('user.edit', $user->id) }}" 
+                           class="btn btn-warning btn-sm rounded-pill me-2 animate-btn">Edit</a>
 
-            <tbody>
-                @foreach($users as $user)
-                    <tr class="hover:bg-blue-50 transition">
-                        <td class="px-4 py-2 border text-center">{{ $user->id }}</td>
-                        <td class="px-4 py-2 border">{{ $user->nama }}</td>
-                        <td class="px-4 py-2 border">{{ $user->nim }}</td>
-                        <td class="px-4 py-2 border">{{ $user->nama_kelas }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline delete-form">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-danger btn-sm rounded-pill animate-btn btn-delete">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
+<script>
+document.querySelectorAll('.btn-delete').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const form = this.closest('form');
+
+        Swal.fire({
+            title: 'Hapus data ini?',
+            text: "Data mahasiswa akan dihapus permanen!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#102a63',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    });
+});
+</script>
