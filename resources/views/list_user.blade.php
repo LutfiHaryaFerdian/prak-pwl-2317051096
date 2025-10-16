@@ -6,11 +6,10 @@
     <p class="text-light opacity-75">Kelola data mahasiswa dengan mudah dan cepat</p>
 </div>
 
-<div class="bg-white rounded-3 shadow-lg p-4">
+<div class="card p-4">
     <div class="d-flex justify-content-between mb-3">
-        <a href="{{ route('user.create') }}" class="btn btn-primary rounded-pill animate-btn">Tambah Mahasiswa</a>
+        <a href="{{ route('user.create') }}" class="btn btn-primary rounded-pill">Tambah Mahasiswa</a>
     </div>
-
     @include('components.user-table', ['users' => $users])
 </div>
 @endsection

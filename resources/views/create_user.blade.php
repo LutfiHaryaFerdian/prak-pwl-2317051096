@@ -1,12 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="col-lg-6 mx-auto">
-    <div class="card shadow-lg border-0">
-        <div class="card-header text-white text-center py-3" style="background-color:#102a63;">
-            <h4 class="mb-0">Tambah Mahasiswa Baru</h4>
-        </div>
-        <div class="card-body p-4">
+<div class="center-container">
+    <div class="col-lg-5">
+        <div class="card p-4">
+            <h4 class="text-center mb-4 fw-semibold text-dark">Tambah Mahasiswa Baru</h4>
             <form action="{{ route('user.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
@@ -19,7 +17,7 @@
                     <input type="text" id="nim" name="nim" class="form-control" placeholder="Masukkan NPM" required>
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-4">
                     <label for="kelas_id" class="form-label fw-semibold text-dark">Kelas</label>
                     <select id="kelas_id" name="kelas_id" class="form-select" required>
                         @foreach($kelas as $kelasItem)
@@ -28,8 +26,8 @@
                     </select>
                 </div>
 
-                <div class="d-flex justify-content-center mt-4">
-                    <button type="submit" class="btn btn-primary px-4 rounded-pill me-2 animate-btn">Simpan</button>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary rounded-pill">Simpan</button>
                 </div>
             </form>
         </div>
